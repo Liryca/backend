@@ -4,7 +4,7 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/users");
 
 const corsOptions = {
-  origin: "http://localhost:3000", // замените на URL вашего фронтенда
+  origin: "https://frontend-pink-six.vercel.app/", // замените на URL вашего фронтенда
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
