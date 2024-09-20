@@ -5,7 +5,9 @@ const userRoutes = require("./api/users");
 const serverless = require("serverless-http");
 
 const app = express();
+
 const port = process.env.PORT || 5000;
+
 app.use(
   cors({
     origin: "*", // Это разрешит все источники, но в production лучше указывать конкретные домены
@@ -18,4 +20,6 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 
-module.exports = app;
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
