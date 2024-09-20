@@ -3,7 +3,7 @@ const cors = require("cors");
 const authRoutes = require("./api/auth");
 const userRoutes = require("./api/users");
 
-require("dotenv").config({ path: "config.env" });
+require("dotenv").config({ path: ".env" });
 
 const app = express();
 
