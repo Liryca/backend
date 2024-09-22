@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
     req.user = verified;
 
     db.query(
-      "SELECT status FROM uemployees WHERE id = ?",
+      "SELECT status FROM employees WHERE id = ?",
       [req.user.id],
       (err, results) => {
         if (err) return res.status(500).send(err);
