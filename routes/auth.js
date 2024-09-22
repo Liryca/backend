@@ -11,7 +11,7 @@ router.post("/register", async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     db.query(
-      "INSERT INTO users (name, email, password, status) VALUES (?, ?, ?, ?)",
+      "INSERT INTO employees (name, email, password, status) VALUES (?, ?, ?, ?)",
       [name, email, hashedPassword, "active"],
       (err) => {
         if (err) {
@@ -32,7 +32,7 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   db.query(
-    "SELECT * FROM users WHERE email = ?",
+    "SELECT * FROM employees WHERE email = ?",
     [email],
     async (err, results) => {
       if (err) return res.status(500).send(err);
@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
 
       const currentDateTime = new Date();
       db.query(
-        "UPDATE users SET last_login = ? WHERE id = ?",
+        "UPDATE employees SET last_login = ? WHERE id = ?",
         [currentDateTime, user.id],
         (updateErr) => {
           if (updateErr) {

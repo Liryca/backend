@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", auth, (req, res) => {
   db.query(
-    "SELECT id, name, email, created_at, last_login, status FROM users",
+    "SELECT id, name, email, created_at, last_login, status FROM employees",
     (err, results) => {
       if (err) return res.status(500).send(err);
       res.json(results);
@@ -25,7 +25,7 @@ router.delete("/", auth, (req, res) => {
   }
 
   const placeholders = userIds.map(() => "?").join(", ");
-  const query = `DELETE FROM users WHERE id IN (${placeholders})`;
+  const query = `DELETE FROM employees WHERE id IN (${placeholders})`;
 
   db.query(query, userIds, (err, results) => {
     if (err) {
@@ -50,7 +50,7 @@ router.post("/block", auth, (req, res) => {
       .send("Invalid input: must provide an array of user IDs");
   }
   const placeholders = userIds.map(() => "?").join(", ");
-  const query = `UPDATE users SET status = "blocked" WHERE id IN (${placeholders})`;
+  const query = `UPDATE employees SET status = "blocked" WHERE id IN (${placeholders})`;
 
   db.query(query, userIds, (err) => {
     if (err) return res.status(500).send(err);
@@ -68,7 +68,7 @@ router.post("/unblock", auth, (req, res) => {
   }
 
   const placeholders = userIds.map(() => "?").join(", ");
-  const query = `UPDATE users SET status = "active" WHERE id IN (${placeholders})`;
+  const query = `UPDATE employees SET status = "active" WHERE id IN (${placeholders})`;
 
   db.query(query, userIds, (err) => {
     if (err) return res.status(500).send(err);
