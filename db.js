@@ -10,12 +10,6 @@ const db = mysql.createConnection({
   url: process.env.MYSQL_URL,
 });
 
-MYSQLHOST;
-MYSQLUSER;
-MYSQLPASSWORD;
-MYSQLDATABASE;
-MYSQLPORT;
-
 db.connect((err) => {
   if (err) throw err;
   console.log("Database connected!");
